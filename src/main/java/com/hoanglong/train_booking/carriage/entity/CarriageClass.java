@@ -1,12 +1,14 @@
 package com.hoanglong.train_booking.carriage.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.hoanglong.train_booking.booking.entity.Booking;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 @Entity
 @Getter
@@ -15,8 +17,15 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "carriage_class")
 public class CarriageClass {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID carriageClassId;
     private String className;
     private int seatingCapacity;
-
+    @OneToMany(mappedBy = "carriageClass", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CarriagePrice> carriagePrices = new HashSet<>();
+    @OneToMany(mappedBy = "carriageClass", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<JourneyCarriage> journeyCarriages = new HashSet<>();
+    @OneToMany(mappedBy = "carriageClass", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Booking> bookings = new HashSet<>();
 }

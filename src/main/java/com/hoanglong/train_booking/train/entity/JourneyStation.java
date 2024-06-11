@@ -20,11 +20,11 @@ public class JourneyStation {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID journeyStationId;
     private int stopOrder;
-    private LocalTime localTime;
+    private LocalTime departureTime;
     @ManyToOne
-    @JoinColumn(name = "staion_id")
+    @JoinColumn(name = "station_id",nullable = false)
     private TrainStation trainStation;
     @ManyToOne
-    @JoinColumn(name = "train_journey_id")
+    @JoinColumn(name = "journey_id",nullable = false)
     private TrainJourney trainJourney;
 }

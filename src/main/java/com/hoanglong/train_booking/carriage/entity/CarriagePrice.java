@@ -1,10 +1,7 @@
 package com.hoanglong.train_booking.carriage.entity;
 
 import com.hoanglong.train_booking.train.entity.Schedule;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,12 +15,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "carriage_price")
 public class CarriagePrice {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID carriagePriceId;
     private Long price;
     @ManyToOne
-    @JoinColumn(name = "schedule_id")
+    @JoinColumn(name = "schedule_id",nullable = false)
     private Schedule schedule;
     @ManyToOne
-    @JoinColumn(name = "carriage_class_id")
+    @JoinColumn(name = "carriage_class_id",nullable = false)
     private CarriageClass carriageClass;
 }

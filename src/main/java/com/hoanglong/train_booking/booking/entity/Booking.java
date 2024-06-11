@@ -27,21 +27,21 @@ public class Booking {
     private int ticketNo;
     private String seatNo;
     @ManyToOne
-    @JoinColumn(name = "passenger_id")
+    @JoinColumn(name = "passenger_id",nullable = false)
     private Passenger passenger;
     @ManyToOne
-    @JoinColumn(name = "booking_status_id")
+    @JoinColumn(name = "booking_status_id",nullable = false)
     private BookingStatus bookingStatus;
     @ManyToOne
-    @JoinColumn(name = "train_station_id")
+    @JoinColumn(name = "start_station_id",referencedColumnName = "trainStationId",nullable = false)
     private TrainStation startStation;
     @ManyToOne
-    @JoinColumn(name = "train_station_id")
+    @JoinColumn(name = "ending_station_id",referencedColumnName = "trainStationId",nullable = false)
     private TrainStation endStation;
     @ManyToOne
-    @JoinColumn(name = "train_journey_id")
+    @JoinColumn(name = "train_journey_id",nullable = false)
     private TrainJourney trainJourney;
     @ManyToOne
-    @JoinColumn(name = "carriage_class_id")
+    @JoinColumn(name = "carriage_class_id",nullable = false)
     private CarriageClass carriageClass;
 }
