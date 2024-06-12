@@ -41,7 +41,7 @@ class JourneyStationServiceTest {
     }
 
     @Test
-    void saveFindJourneyStation() {
+    void saveJourneyStation() {
     }
 
     @Test

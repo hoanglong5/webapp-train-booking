@@ -32,6 +32,9 @@ public abstract class BaseEntityService<E,D extends JpaRepository<E, UUID>> {
     public void Delete(E entity){
          dao.delete(entity);
     }
+    public void DeleteById(UUID uuid){
+        dao.deleteById(uuid);
+    }
     protected Integer GetSize(Optional<Integer> sizeOptional) {
         Integer size = DEFAULT_SIZE;
         if (sizeOptional.isPresent()){
