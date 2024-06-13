@@ -11,22 +11,22 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class ScheduleService {
-    private final ScheduleEntityService dao;
+    private final ScheduleEntityService scheduleEntityService;
     public List<Schedule> FindAllSchedule(){
-        return dao.FindALl();
+        return scheduleEntityService.FindALl();
     }
     public Schedule FindSchedule(UUID uuid){
-        return dao.FindById(uuid);
+        return scheduleEntityService.FindById(uuid);
     }
     public void DeleteSchedule(UUID uuid){
-        dao.DeleteById(uuid);
+        scheduleEntityService.DeleteById(uuid);
     }
     public void SaveSchedule(Schedule schedule){
-        dao.Save(schedule);
+        scheduleEntityService.Save(schedule);
     }
-    public void UpdateSchedule(UUID uuid,Schedule schedule){
-        Schedule schedule2Update = dao.FindById(uuid);
-        schedule2Update.setName(schedule.getName());
-        dao.Save(schedule2Update);
+    public void UpdateSchedule(UUID uuid,Schedule updatedSchedule){
+        Schedule schedule = scheduleEntityService.FindById(uuid);
+        schedule.setName(updatedSchedule.getName());
+        scheduleEntityService.Save(schedule);
     }
 }

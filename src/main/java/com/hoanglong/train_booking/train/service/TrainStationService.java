@@ -11,21 +11,22 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class TrainStationService {
-    private final TrainStationEntityService dao;
+    private final TrainStationEntityService trainStationEntityService;
     public List<TrainStation> FindAllTrainStation(){
-        return dao.FindALl();
+        return trainStationEntityService.FindALl();
     }
     public TrainStation FindTrainStation(UUID uuid){
-        return dao.FindById(uuid);
+        return trainStationEntityService.FindById(uuid);
     }
     public void DeleteTrainStation(UUID uuid){
-        dao.DeleteById(uuid);
+        trainStationEntityService.DeleteById(uuid);
     }
     public void SaveTrainStation(TrainStation trainStation){
-        dao.Save(trainStation);
+        trainStationEntityService.Save(trainStation);
     }
-    public void UpdateTrainStation(UUID uuid,TrainStation trainStation){
-        TrainStation trainStation2Update = dao.FindById(uuid);
-        trainStation2Update.setStationName(trainStation.getStationName());
+    public void UpdateTrainStation(UUID uuid,TrainStation updatedTrainStation){
+        TrainStation trainStation = trainStationEntityService.FindById(uuid);
+        trainStation.setStationName(updatedTrainStation.getStationName());
+        trainStationEntityService.Save(trainStation);
     }
 }

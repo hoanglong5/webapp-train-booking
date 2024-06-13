@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/${version}/TraSta")
+@RequestMapping("/api/${version}/trainSta")
 @RequiredArgsConstructor
 public class TrainStationController {
     private final TrainStationService trainStationService;
