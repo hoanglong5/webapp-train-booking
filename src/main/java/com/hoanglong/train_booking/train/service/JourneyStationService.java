@@ -1,6 +1,8 @@
 package com.hoanglong.train_booking.train.service;
 
+import com.hoanglong.train_booking.train.dto.JourneyStationDto;
 import com.hoanglong.train_booking.train.entity.JourneyStation;
+import com.hoanglong.train_booking.train.mapper.JourneyStationMapper;
 import com.hoanglong.train_booking.train.service.entityservice.JourneyStationEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,8 +14,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class JourneyStationService {
     private final JourneyStationEntityService journeyStationEntityService;
-    public List<JourneyStation> FindAllJourneyStation(){
-        return journeyStationEntityService.FindALl();
+    public List<JourneyStationDto> FindAllJourneyStation(){
+        List<JourneyStation> journeyStations = journeyStationEntityService.FindALl();
+        List<JourneyStationDto>journeyStationDtos = JourneyStationMapper.INSTANCE.ListJoStaToListJoStaDto(journeyStations);
+        return journeyStationDtos ;
     }
     public JourneyStation FindJourneyStation(UUID uuid){
         return journeyStationEntityService.FindById(uuid);

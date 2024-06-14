@@ -23,7 +23,7 @@ public class TrainStationController {
     @GetMapping("/{id}")
     public ResponseEntity<RestResponse<TrainStation>> FindTrainStation(@RequestParam UUID id){
         TrainStation trainStations = trainStationService.FindTrainStation(id);
-        return ResponseEntity.ok(RestResponse.of(trainStations));
+        return ResponseEntity.ok(RestResponse .of(trainStations));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<RestResponse<?>> DeleteTrainStation(@RequestParam UUID id){

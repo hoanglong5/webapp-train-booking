@@ -1,6 +1,7 @@
 package com.hoanglong.train_booking.train.controller;
 
 import com.hoanglong.train_booking.base.controller.RestResponse;
+import com.hoanglong.train_booking.train.dto.JourneyStationDto;
 import com.hoanglong.train_booking.train.entity.JourneyStation;
 import com.hoanglong.train_booking.train.service.JourneyStationService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ import java.util.UUID;
 public class JourneyStationController {
     private final JourneyStationService journeyStationService;
     @GetMapping()
-    public ResponseEntity<RestResponse<List<JourneyStation>>> FindAllJourneyStation(){
-        List<JourneyStation> journeyStations = journeyStationService.FindAllJourneyStation();
+    public ResponseEntity<RestResponse<List<JourneyStationDto>>> FindAllJourneyStation(){
+        List<JourneyStationDto> journeyStations = journeyStationService.FindAllJourneyStation();
         return ResponseEntity.ok(RestResponse.of(journeyStations));
     }
     @GetMapping("/{id}")

@@ -1,5 +1,6 @@
 package com.hoanglong.train_booking.carriage.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hoanglong.train_booking.booking.entity.Booking;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,10 +23,13 @@ public class CarriageClass {
     private UUID carriageClassId;
     private String className;
     private int seatingCapacity;
+    @JsonIgnore
     @OneToMany(mappedBy = "carriageClass", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CarriagePrice> carriagePrices = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "carriageClass", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<JourneyCarriage> journeyCarriages = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "carriageClass", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Booking> bookings = new HashSet<>();
 }

@@ -20,12 +20,12 @@ public class BookingController {
         return ResponseEntity.ok(RestResponse.of(bookings));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<RestResponse<Booking>> FindBooking(@RequestParam UUID id){
+    public ResponseEntity<RestResponse<Booking>> FindBooking(@PathVariable UUID id){
         Booking bookings = bookingService.FindBooking(id);
         return ResponseEntity.ok(RestResponse.of(bookings));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<RestResponse<?>> DeleteBooking(@RequestParam UUID id){
+    public ResponseEntity<RestResponse<?>> DeleteBooking(@PathVariable UUID id){
         bookingService.DeleteBooking(id);
         return ResponseEntity.ok(RestResponse.empty());
     }
@@ -35,7 +35,7 @@ public class BookingController {
         return ResponseEntity.ok(RestResponse.empty());
     }
     @PutMapping("/{id}")
-    public ResponseEntity<RestResponse<?>> UpdateBooking(@RequestBody Booking booking,@RequestParam UUID id){
+    public ResponseEntity<RestResponse<?>> UpdateBooking(@RequestBody Booking booking,@PathVariable UUID id){
         bookingService.UpdateBooking(id,booking);
         return ResponseEntity.ok(RestResponse.empty());
     }

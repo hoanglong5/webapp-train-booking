@@ -26,7 +26,7 @@ public class BookingStatusService {
     }
     public void UpdateBookingStatus(UUID id,BookingStatus updatedBookingStatus){
         BookingStatus bookingStatus = bookingStatusEntityService.FindById(id);
-        bookingStatus.setBookingStatus(updatedBookingStatus.getBookingStatus());
+        bookingStatus.setBookingStatusName(updatedBookingStatus.getBookingStatusName());
         bookingStatusEntityService.Save(bookingStatus);
     }
 }

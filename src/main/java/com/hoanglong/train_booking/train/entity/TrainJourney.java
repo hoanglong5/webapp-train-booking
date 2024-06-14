@@ -1,5 +1,6 @@
 package com.hoanglong.train_booking.train.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hoanglong.train_booking.booking.entity.Booking;
 import com.hoanglong.train_booking.carriage.entity.JourneyCarriage;
 import jakarta.persistence.*;
@@ -26,10 +27,13 @@ public class TrainJourney {
     @ManyToOne
     @JoinColumn(name = "schedule_id",nullable = false)
     private Schedule schedule;
+    @JsonIgnore
     @OneToMany(mappedBy = "trainJourney",cascade = CascadeType.ALL,orphanRemoval = true)
     Set<JourneyStation> journeyStations = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "trainJourney",cascade = CascadeType.ALL,orphanRemoval = true)
     Set<JourneyCarriage> journeyCarriages = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "trainJourney",cascade = CascadeType.ALL,orphanRemoval = true)
     Set<Booking> bookings = new HashSet<>();
 }

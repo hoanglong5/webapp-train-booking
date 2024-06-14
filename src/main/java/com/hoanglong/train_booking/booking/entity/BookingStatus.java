@@ -1,5 +1,6 @@
 package com.hoanglong.train_booking.booking.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hoanglong.train_booking.booking.enums.BookingStatusEnums;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,8 +21,10 @@ public class BookingStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID bookingStatusId;
-    @Enumerated(EnumType.STRING)
-    private BookingStatusEnums bookingStatus;
+    @Column(name = "name")
+//    @Enumerated(EnumType.STRING)
+    private String bookingStatusName;
+    @JsonIgnore
     @OneToMany(mappedBy = "bookingStatus", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Booking> bookings = new HashSet<>();
 }

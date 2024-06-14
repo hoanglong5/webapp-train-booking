@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID bookingID;
+    private UUID bookingId;
     private LocalDateTime bookingDate;
     private int amountPaid;
     private int ticketNo;
@@ -30,10 +30,10 @@ public class Booking {
     @JoinColumn(name = "passenger_id",nullable = false)
     private Passenger passenger;
     @ManyToOne
-    @JoinColumn(name = "booking_status_id",nullable = false)
+    @JoinColumn(name = "status_id",nullable = false)
     private BookingStatus bookingStatus;
     @ManyToOne
-    @JoinColumn(name = "start_station_id",referencedColumnName = "trainStationId",nullable = false)
+    @JoinColumn(name = "starting_station_id",referencedColumnName = "trainStationId",nullable = false)
     private TrainStation startStation;
     @ManyToOne
     @JoinColumn(name = "ending_station_id",referencedColumnName = "trainStationId",nullable = false)
@@ -42,6 +42,6 @@ public class Booking {
     @JoinColumn(name = "train_journey_id",nullable = false)
     private TrainJourney trainJourney;
     @ManyToOne
-    @JoinColumn(name = "carriage_class_id",nullable = false)
+    @JoinColumn(name = "ticket_class_id",nullable = false)
     private CarriageClass carriageClass;
 }
