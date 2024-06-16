@@ -22,19 +22,19 @@ public class ScheduleController {
         return ResponseEntity.ok(RestResponse.of(schedules));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<RestResponse<Schedule>> FindSchedule(@RequestParam UUID id){
-        Schedule schedules = scheduleService.FindSchedule(id);
+    public ResponseEntity<RestResponse<Schedule>> FindSchedule(@PathVariable UUID id){
+        Schedule schedules = scheduleService.getSchedule(id);
         return ResponseEntity.ok(RestResponse.of(schedules));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<RestResponse<?>> DeleteSchedule(@RequestParam UUID id){
+    public ResponseEntity<RestResponse<?>> DeleteSchedule(@PathVariable UUID id){
         scheduleService.DeleteSchedule(id);
         return ResponseEntity.ok(RestResponse.empty());
     }
     @PostMapping()
-    public ResponseEntity<RestResponse<?>> SaveSchedule(@RequestBody Schedule schedule){
+    public ResponseEntity<RestResponse<Schedule>> SaveSchedule(@RequestBody Schedule schedule){
         scheduleService.SaveSchedule(schedule);
-        return ResponseEntity.ok(RestResponse.empty());
+        return ResponseEntity.ok(RestResponse.of(schedule));
     }
     @PutMapping("/{id}")
     public ResponseEntity<RestResponse<?>> UpdateSchedule(@RequestBody Schedule schedule,@RequestParam UUID id){
